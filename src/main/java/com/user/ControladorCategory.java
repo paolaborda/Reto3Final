@@ -48,5 +48,15 @@ public class ControladorCategory {
     public Category save(@RequestBody Category category) {
         return servicio.save(category);
     }
-    
+   @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category update(@RequestBody Category category){
+        return servicio.update(category);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int categoryId){
+        return servicio.deleteCategory(categoryId);
+    } 
 }

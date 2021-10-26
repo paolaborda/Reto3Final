@@ -32,5 +32,28 @@ public class serviciosMessage {
         }
     }
 
-    
+    public Message update(Message message) {
+        if (message.getIdMessage() != null) {
+            Optional<Message> evt = metodoscrud.getMessage(message.getIdMessage());
+            if (!evt.isEmpty()) {
+                if (message.getMessageText() != null) {
+                    evt.get().setMessageText(message.getMessageText());
+                }
+                metodoscrud.save(evt.get());
+                return evt.get();
+            } else {
+                return message;
+            }
+        } else {
+            return message;
+        }
+    }
+
+    public boolean deleteMessage(int id) {
+        Boolean del = getMessage(id).map(message -> {
+            metodoscrud.delete(message);
+            return true;
+        }).orElse(false);
+        return del;
+    }
 }

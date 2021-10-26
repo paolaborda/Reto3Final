@@ -50,5 +50,16 @@ public class ControladorCliente {
         return servicio.save(client);
     }
 
-    
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client update(@RequestBody Client client) {
+        return servicio.update(client);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return servicio.deleteClient(id);
+    }
+
 }

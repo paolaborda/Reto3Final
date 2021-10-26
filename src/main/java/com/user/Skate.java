@@ -17,31 +17,61 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Clase Skate
+ * @author user
+ */
 @Entity
 @Table(name="skate")
 public class Skate implements Serializable{
-    
+
+    /**
+     * id llave principal
+     */
     @Id
     @GeneratedValue
     private Integer id;
+    /**
+     * variable nombre
+     */
     private String name;
+    /**
+     * variable brand
+     */
     private String brand;
+    /**
+     * variable año
+     */
     private Integer year;
+    /**
+     * variable descripción
+     */
     private String description;
     
+    /**
+     * relación con la tabla category
+     */
     @ManyToOne
     @JoinColumn(name = "skateId")
     @JsonIgnoreProperties("skates")
     private Category category;
-    
+    /**
+     * relación con la tabla messages
+     */
     @OneToMany(cascade = (CascadeType.PERSIST), mappedBy = "skate")
     @JsonIgnoreProperties({"skate","client"})
     private List<Message> messages;
-    
+    /**
+     * relación con la tabla reservación
+     */
     @OneToMany(cascade = (CascadeType.PERSIST), mappedBy = "skate")
     @JsonIgnoreProperties({"skate","client"})
     private List<Reservation> reservations;
 
+    /**
+     * creación de los getters and setters
+     * @return 
+     */
     public Integer getId() {
         return id;
     }

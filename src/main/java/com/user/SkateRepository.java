@@ -21,5 +21,7 @@ public class SkateRepository {
   public Skate save(Skate skate){
       return crud.save(skate);
   }
-  
+  public void delete(Skate skate){
+        crud.delete(skate);
+    }
 }

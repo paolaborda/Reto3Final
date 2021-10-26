@@ -45,5 +45,15 @@ public class ControladorSkate {
     public Skate save(@RequestBody Skate skate) {
         return servicio.save(skate);
     }
-    
+   @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Skate update(@RequestBody Skate skate){
+        return servicio.update(skate);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return servicio.deleteSkate(id);
+    } 
 }
